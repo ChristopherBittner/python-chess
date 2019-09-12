@@ -66,10 +66,10 @@ FILE_NAMES = ["a", "b", "c", "d", "e", "f", "g", "h"]
 
 RANK_NAMES = ["1", "2", "3", "4", "5", "6", "7", "8"]
 
-STARTING_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+STARTING_FEN = "rnbkqbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 """The FEN for the standard chess starting position."""
 
-STARTING_BOARD_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
+STARTING_BOARD_FEN = "rnbkqbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
 """The board part of the FEN for the standard chess starting position."""
 
 
@@ -562,8 +562,8 @@ class BaseBoard:
         self.knights = BB_B1 | BB_G1 | BB_B8 | BB_G8
         self.bishops = BB_C1 | BB_F1 | BB_C8 | BB_F8
         self.rooks = BB_CORNERS
-        self.queens = BB_D1 | BB_D8
-        self.kings = BB_E1 | BB_E8
+        self.queens = BB_D1 | BB_E8
+        self.kings = BB_E1 | BB_D8
 
         self.promoted = BB_EMPTY
 
