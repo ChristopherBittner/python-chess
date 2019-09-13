@@ -319,6 +319,7 @@ def _step_attacks(square: Square, deltas: Iterable[int]) -> Bitboard:
 
 BB_KNIGHT_ATTACKS = [_step_attacks(sq, [17, 15, 10, 6, -17, -15, -10, -6]) for sq in SQUARES]
 BB_KING_ATTACKS = [_step_attacks(sq, [9, 8, 7, 1, -9, -8, -7, -1]) for sq in SQUARES]
+BB_BISHOP_ATTACKS = [_step_attacks(sq, [-18, 18, 14, -14]) for sq in SQUARES]
 BB_PAWN_ATTACKS = [[_step_attacks(sq, deltas) for sq in SQUARES] for deltas in [[-7, -9], [7, 9]]]
 
 
@@ -676,9 +677,11 @@ class BaseBoard:
             return BB_KNIGHT_ATTACKS[square]
         elif bb_square & self.kings:
             return BB_KING_ATTACKS[square]
+        elif bb_square & self.bishops:
+            return BB_BISHOP_ATTACKS[square]
         else:
             attacks = 0
-            if bb_square & self.bishops or bb_square & self.queens:
+            if bb_square & self.queens:
                 attacks = BB_DIAG_ATTACKS[square][BB_DIAG_MASKS[square] & self.occupied]
             if bb_square & self.rooks or bb_square & self.queens:
                 attacks |= (BB_RANK_ATTACKS[square][BB_RANK_MASKS[square] & self.occupied] |
